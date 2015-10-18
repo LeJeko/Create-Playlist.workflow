@@ -59,7 +59,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>for dir; do cd "$dir" &amp;&amp; find . -type f \( -name '*.mp3' -o -name '*.aac' -o -name '*.m4a' -o -name '*.wav' -o -name '*.wma' \) -exec bash -c 'file="{}"; printf "%s\n" "${PWD##*/}/${file#*/}" &gt;&gt; "../${PWD##*/}.m3u"' \;; done</string>
+					<string>for dir; do cd "$dir" &amp;&amp; find . -type f \( -name '*.mp3' -o -name '*.aac' -o -name '*.m4a' -o -name '*.wav' -o -name '*.wma' \) -type f ! -name '*._*' -exec bash -c 'file="{}"; printf "%s\n%s\n" "#EXTINF:${file#*/}" "${PWD##*/}/${file#*/}" &gt;&gt; "../${PWD##*/}.m3u"' \;; done</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
